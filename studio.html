@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/studio.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+
+<div class="topbar">
+  <div class="topbar-l">
+    <div class="brand"><svg viewBox="0 0 100 92" style="width:16px;height:16px;stroke:var(--pink);stroke-width:8;fill:none;"><use href="#d-heart"/></svg>Smitten</div>
+    <div class="note-title">✏️ Untitled note</div>
+  </div>
+  <div class="topbar-r">
+    <a href="dashboard.html" class="pill-btn ghost">Exit</a>
+    <button class="pill-btn paper">Save draft</button>
+    <a href="invite-preview.html" class="pill-btn paper">Preview</a>
+    <button class="pill-btn pink">Publish →</button>
+  </div>
+</div>
+
+<div class="studio">
+  <div class="panel-left">
+    <div class="panel-title">Sections</div>
+    <div class="sec-item active" onclick="selectSection(this,'hero')"><span class="drag">⠿</span><span class="name">Hero</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'photo')"><span class="drag">⠿</span><span class="name">Photo</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'date')"><span class="drag">⠿</span><span class="name">Date</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'venue')"><span class="drag">⠿</span><span class="name">Venue</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'food')"><span class="drag">⠿</span><span class="name">Food question</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item hidden-sec" onclick="selectSection(this,'activity')"><span class="drag">⠿</span><span class="name">Activity</span><span class="icn">🚫</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'question')"><span class="drag">⠿</span><span class="name">Question</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <div class="sec-item" onclick="selectSection(this,'final')"><span class="drag">⠿</span><span class="name">Final response</span><span class="icn">👁</span><span class="icn">⧉</span></div>
+    <button class="add-sec">+ Add section</button>
+  </div>
+
+  <div class="panel-center">
+    <div class="canvas">
+      <div class="cv-block cv-hero active" onclick="selectSection(null,'hero')" id="cv-hero"><div class="lbl">Hero</div><h2>Dinner with Ananya</h2><p>A little something I've been planning...</p></div>
+      <div class="cv-block cv-photo" onclick="selectSection(null,'photo')" id="cv-photo"><div class="lbl">Photo</div><div class="ph"><svg viewBox="0 0 100 92" style="width:40px;height:40px;stroke:var(--pink);stroke-width:5;fill:var(--card);"><use href="#d-heart"/></svg></div></div>
+      <div class="cv-block cv-date" onclick="selectSection(null,'date')" id="cv-date"><div class="lbl">Date</div>Saturday, 24 August · 7:30 PM</div>
+      <div class="cv-block cv-venue" onclick="selectSection(null,'venue')" id="cv-venue"><div class="lbl">Venue</div><p>📍 The Grammar Room</p></div>
+      <div class="cv-block cv-food" onclick="selectSection(null,'food')" id="cv-food"><div class="lbl">Food question</div><p>🍝 What sounds good — Italian or Thai?</p></div>
+      <div class="cv-block cv-question" onclick="selectSection(null,'question')" id="cv-question"><div class="lbl">Question</div><p>What should I wear?</p><div class="opts"><span>Casual</span><span>Smart casual</span><span>Dressy</span></div></div>
+      <div class="cv-block cv-final" onclick="selectSection(null,'final')" id="cv-final"><div class="lbl">Final response</div><h3>Will you join me?</h3><div class="yn"><span>Yes, I'd love to</span><span>Maybe</span><span>No</span></div></div>
+    </div>
+  </div>
+
+  <div class="panel-right">
+    <div class="panel-title" style="padding:0 0 14px;">Properties</div>
+    <div class="prop-title" id="prop-title">Hero</div>
+    <div class="field"><label>Title</label><input type="text" value="Dinner with Ananya"></div>
+    <div class="field"><label>Subtitle</label><textarea rows="2">A little something I've been planning...</textarea></div>
+    <div class="field"><label>Alignment</label><div class="align-row"><span class="sel">Left</span><span>Center</span><span>Right</span></div></div>
+    <div class="field"><label>Entrance animation</label>
+      <select><option>Fade up</option><option>Blur to focus</option><option>Scale in</option><option>None</option></select>
+    </div>
+    <div class="field"><label>Accent color</label>
+      <div style="display:flex;gap:8px;">
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--pink);border:2px solid var(--ink);cursor:pointer;"></span>
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--yellow);border:2px solid var(--ink);cursor:pointer;"></span>
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--lavender);border:2px solid var(--ink);cursor:pointer;"></span>
+        <span style="width:26px;height:26px;border-radius:50%;background:var(--mint);border:2px solid var(--ink);cursor:pointer;"></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/studio.js"></script>
+</body>
+</html>

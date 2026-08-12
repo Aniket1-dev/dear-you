@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>A private note — Smitten</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/invite.css">
+</head>
+<body>
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+
+<div class="stagewrap">
+
+  <div class="step active" id="step1" onclick="go(2)">
+    <svg class="heart" viewBox="0 0 100 92"><use href="#d-heart"/></svg>
+    <div class="eyebrow">24 · 08 · 26</div>
+    <h1>A private note,<br>just for you.</h1>
+    <p class="for">for Ananya 💌</p>
+    <div class="tap-hint">tap anywhere to open ✨</div>
+  </div>
+
+  <div class="step" id="step2">
+    <div class="eyebrow">from Aniket</div>
+    <h1>I have something<br>planned for you.</h1>
+    <div class="details-card">
+      <ul>
+        <li>📅 Saturday, 24 August · 7:30 PM</li>
+        <li>📍 The Grammar Room</li>
+        <li>🍝 Italian dinner</li>
+        <li>👗 Smart casual</li>
+      </ul>
+    </div>
+    <button class="pill-btn pink" onclick="go(3)">Keep reading →</button>
+  </div>
+
+  <div class="step" id="step3">
+    <div class="eyebrow">one last thing</div>
+    <h1>Will you join me?</h1>
+    <div class="options">
+      <button class="opt-btn yes" onclick="window.location.href='confirmation.html'">Yes, I'd love to 💛</button>
+      <button class="opt-btn" onclick="go(4)">Maybe</button>
+      <button class="opt-btn" onclick="go(4)">No, not this time</button>
+    </div>
+  </div>
+
+  <div class="step" id="step4">
+    <svg class="heart" viewBox="0 0 100 92"><use href="#d-heart"/></svg>
+    <h1>Thanks for<br>letting me know.</h1>
+    <p style="color:var(--ink-soft);font-size:14px;">Aniket will get your answer right away.</p>
+  </div>
+
+</div>
+
+<script src="assets/js/invite.js"></script>
+</body>
+</html>

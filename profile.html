@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — Profile</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/profile.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<nav class="app-nav">
+  <div class="brand"><svg viewBox="0 0 100 92" style="width:18px;height:18px;stroke:var(--pink);stroke-width:8;fill:none;"><use href="#d-heart"/></svg>Smitten</div>
+  <div class="links">
+    <a href="dashboard.html">My Notes</a>
+    <a href="invitations.html">All Notes</a>
+    <a href="templates.html">Templates</a>
+    <a href="studio.html">Studio</a>
+    <a class="current" href="#">Profile</a>
+  </div>
+  <div class="avatar-nav"></div>
+</nav>
+
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">your profile</div>
+    <h1>You, on Smitten.</h1>
+    <p>This is what people see when you send them a note.</p>
+  </div>
+
+  <div class="id-card">
+    <div class="avatar-upload">
+      <span class="cam">📷</span>
+      <span class="badge">✏️</span>
+    </div>
+    <div class="id-info">
+      <h2>Aniket Sharma</h2>
+      <p>aniket@email.com · +91 98765 43210</p>
+      <span class="verified-tag">✓ Verified account</span>
+    </div>
+    <button class="pill-btn ghost">Change photo</button>
+    <a href="settings.html" class="pill-btn ghost">App settings</a>
+  </div>
+
+  <div class="stats-row">
+    <div class="stat-card"><div class="n">12</div><div class="l">Notes sent</div></div>
+    <div class="stat-card"><div class="n">9</div><div class="l">Opened</div></div>
+    <div class="stat-card"><div class="n">7</div><div class="l">Said yes</div></div>
+  </div>
+
+  <form class="form-card" onsubmit="return false;">
+    <div class="form-head">
+      <h3>Basic details</h3>
+      <span class="tag-req">Required to publish notes</span>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Full name</label>
+        <input type="text" value="Aniket Sharma" placeholder="Your full name">
+      </div>
+      <div class="field">
+        <label>Display name <span class="opt">shown to recipients</span></label>
+        <input type="text" value="Aniket" placeholder="What should they call you?">
+      </div>
+      <div class="field">
+        <label>Email address</label>
+        <input type="email" value="aniket@email.com" placeholder="you@email.com">
+      </div>
+      <div class="field">
+        <label>Mobile number</label>
+        <div class="prefix-wrap">
+          <span>+91</span>
+          <input type="tel" value="98765 43210" placeholder="98765 43210">
+        </div>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="pill-btn ghost" type="button">Cancel</button>
+      <button class="pill-btn pink sticker-shadow-sm" type="submit">Save changes</button>
+    </div>
+  </form>
+
+  <form class="form-card" onsubmit="return false;">
+    <div class="form-head">
+      <h3>A little more about you</h3>
+      <span class="tag-req" style="background:var(--mint-soft);color:#1F8E68;">Optional</span>
+    </div>
+    <div class="field-grid">
+      <div class="field">
+        <label>Instagram <span class="opt">optional</span></label>
+        <div class="prefix-wrap">
+          <span>@</span>
+          <input type="text" value="aniket.codes" placeholder="yourhandle">
+        </div>
+      </div>
+      <div class="field">
+        <label>Where you're based <span class="opt">optional</span></label>
+        <input type="text" value="Agra, India" placeholder="City, country">
+      </div>
+      <div class="field full">
+        <label>Short bio <span class="opt">optional</span></label>
+        <textarea placeholder="A line or two — this shows up on notes that include your intro.">Terrible at texting, better at planning surprises.</textarea>
+        <span class="hint">Keep it under 140 characters — short and sweet reads best.</span>
+      </div>
+    </div>
+    <div class="form-actions">
+      <button class="pill-btn ghost" type="button">Cancel</button>
+      <button class="pill-btn pink sticker-shadow-sm" type="submit">Save changes</button>
+    </div>
+  </form>
+
+  <div class="danger-card">
+    <div>
+      <h3>Delete account</h3>
+      <p>This removes your profile and every note you've sent. There's no undoing it.</p>
+    </div>
+    <button class="pill-btn danger">Delete my account</button>
+  </div>
+
+  <div class="logout-row">
+    <a href="admin.html" style="color:var(--ink-soft);">Admin portal →</a>
+    &nbsp;·&nbsp;
+    <a href="#" id="logout-link">Log out</a>
+  </div>
+</div>
+
+<script>
+document.getElementById("logout-link").addEventListener("click", function (e) {
+  e.preventDefault();
+  AUTH.signOut();
+});
+</script>
+</body>
+</html>

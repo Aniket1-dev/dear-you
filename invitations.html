@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — All Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/app.css">
+<style>
+  .page-head{ padding:52px 0 30px; }
+  .page-head h1{ font-size:clamp(32px,6vw,54px); margin:12px 0 6px; }
+  .page-head p{ color:var(--ink-soft); font-size:14px; }
+  .filter-row{ display:flex; gap:8px; flex-wrap:wrap; margin-bottom:28px; }
+  .filter-row .f{ font-size:12.5px; font-weight:700; padding:8px 16px; border-radius:100px; border:2px solid var(--ink); color:var(--ink-soft); cursor:pointer; }
+  .filter-row .f.active{ background:var(--pink); color:#fff; }
+  .list{ display:flex; flex-direction:column; gap:14px; padding-bottom:80px; }
+  .row{ display:flex; align-items:center; justify-content:space-between; gap:16px; background:var(--card); border:2.5px solid var(--ink); border-radius:16px; padding:16px 20px; flex-wrap:wrap; transition:transform .2s var(--bounce), box-shadow .2s var(--bounce); }
+  .row:hover{ transform:translateY(-3px); box-shadow:4px 4px 0 var(--ink); }
+  .row-l{ display:flex; align-items:center; gap:14px; }
+  .row-l .ic{ width:44px; height:44px; border-radius:12px; display:flex; align-items:center; justify-content:center; flex-shrink:0; }
+  .row-l h3{ font-size:16px; margin-bottom:2px; }
+  .row-l p{ font-size:12px; color:var(--ink-soft); }
+  .row-r{ display:flex; align-items:center; gap:14px; }
+</style>
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div></div>
+<nav class="app-nav">
+  <div class="brand"><svg viewBox="0 0 100 92" style="width:18px;height:18px;stroke:var(--pink);stroke-width:8;fill:none;"><use href="#d-heart"/></svg>Smitten</div>
+  <div class="links">
+    <a href="dashboard.html">My Notes</a>
+    <a href="templates.html">Templates</a>
+    <a href="studio.html">Studio</a>
+    <a href="profile.html">Profile</a>
+  </div>
+  <a href="profile.html" class="avatar" style="display:block;"></a>
+</nav>
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">all notes</div>
+    <h1>Every note<br>you've sent.</h1>
+    <p>Drafts, sent, opened, and answered — all in one place.</p>
+  </div>
+  <div class="filter-row">
+    <span class="f active">All (7)</span>
+    <span class="f">Drafts (2)</span>
+    <span class="f">Sent (2)</span>
+    <span class="f">Opened (1)</span>
+    <span class="f">Said yes (2)</span>
+  </div>
+  <div class="list">
+    <a class="row" href="invite-preview.html">
+      <div class="row-l"><div class="ic" style="background:var(--mint-soft);">💛</div><div><h3>Ananya</h3><p>Puppy Love · 24 Aug, 7:30 PM</p></div></div>
+      <div class="row-r"><span class="tag yes">She said yes</span></div>
+    </a>
+    <a class="row" href="studio.html">
+      <div class="row-l"><div class="ic" style="background:#EFEAE3;">✏️</div><div><h3>Untitled note</h3><p>Not scheduled yet</p></div></div>
+      <div class="row-r"><span class="tag draft">Draft</span></div>
+    </a>
+    <a class="row" href="invite-preview.html">
+      <div class="row-l"><div class="ic" style="background:var(--lavender-soft);">👀</div><div><h3>Riya</h3><p>Sunshine · 30 Aug, 9:00 PM</p></div></div>
+      <div class="row-r"><span class="tag opened">Opened</span></div>
+    </a>
+    <a class="row" href="invite-preview.html">
+      <div class="row-l"><div class="ic" style="background:var(--pink-soft);">💌</div><div><h3>Meera</h3><p>Cozy · 2 Sept, 8:00 PM</p></div></div>
+      <div class="row-r"><span class="tag sent">Sent</span></div>
+    </a>
+    <a class="row" href="studio.html">
+      <div class="row-l"><div class="ic" style="background:#EFEAE3;">✏️</div><div><h3>Draft — no title</h3><p>Started 3 days ago</p></div></div>
+      <div class="row-r"><span class="tag draft">Draft</span></div>
+    </a>
+    <a class="row" href="invite-preview.html">
+      <div class="row-l"><div class="ic" style="background:var(--mint-soft);">💛</div><div><h3>Kabir</h3><p>Confetti · 12 Jul, 6:00 PM</p></div></div>
+      <div class="row-r"><span class="tag yes">He said yes</span></div>
+    </a>
+    <a class="row" href="invite-preview.html">
+      <div class="row-l"><div class="ic" style="background:var(--pink-soft);">💌</div><div><h3>Devika</h3><p>Rainy Day · 5 Jul, 5:00 PM</p></div></div>
+      <div class="row-r"><span class="tag sent">Sent</span></div>
+    </a>
+  </div>
+</div>
+</body>
+</html>

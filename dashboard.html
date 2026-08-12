@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — My Notes</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/dashboard.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div></div>
+
+<nav class="app-nav">
+  <div class="brand"><svg viewBox="0 0 100 92" style="width:18px;height:18px;stroke:var(--pink);stroke-width:8;fill:none;"><use href="#d-heart"/></svg>Smitten</div>
+  <div class="links">
+    <a class="current" href="#">My Notes</a>
+    <a href="invitations.html">All Notes</a>
+    <a href="templates.html">Templates</a>
+    <a href="studio.html">Studio</a>
+    <a href="profile.html">Profile</a>
+  </div>
+  <a href="profile.html" class="avatar" style="display:block;"></a>
+</nav>
+
+<div class="wrap">
+  <div class="dash-hero">
+    <div class="eyebrow">hi Aniket 👋</div>
+    <h1>Here's what's<br>coming up.</h1>
+  </div>
+
+  <div class="dash-next">
+    <div class="dash-next-info">
+      <div class="k">Next date</div>
+      <h2>Dinner with Ananya</h2>
+      <ul>
+        <li>📅 Saturday, 24 August · 7:30 PM</li>
+        <li>📍 The Grammar Room</li>
+        <li>💛 She opened it and said yes!</li>
+      </ul>
+      <a href="invite-preview.html" class="pill-btn paper sticker-shadow-sm" style="font-size:12.5px;padding:12px 20px;">Peek at the note →</a>
+    </div>
+    <div class="dash-next-visual">
+      <svg viewBox="0 0 100 92" style="width:90px;height:90px;stroke:var(--pink);stroke-width:5;fill:var(--card);opacity:.9;"><use href="#d-heart"/></svg>
+    </div>
+  </div>
+
+  <a href="studio.html" style="display:block;">
+    <div class="dash-cta">
+      <div class="dash-cta-l">
+        <div class="plus-badge">+</div>
+        <div>
+          <h3>Start a new note</h3>
+          <p>Blank page or one of six templates — your call.</p>
+        </div>
+      </div>
+      <span class="pill-btn yellow sticker-shadow-sm" style="font-size:12px;padding:11px 18px;">Begin →</span>
+    </div>
+  </a>
+
+  <div class="dash-section">
+    <div class="sec-head">
+      <h2>Your notes</h2>
+      <a href="invitations.html" style="font-size:12.5px;font-weight:700;color:var(--pink);">See all →</a>
+    </div>
+    <div class="hscroll">
+      <a class="note-tile" href="invite-preview.html" style="display:block;"><span class="tag yes">She said yes</span><h3>Ananya</h3><p>Puppy Love · 24 Aug, 7:30 PM</p></a>
+      <a class="note-tile" href="studio.html" style="display:block;"><span class="tag draft">Draft</span><h3>Untitled note</h3><p>Not scheduled yet</p></a>
+      <a class="note-tile" href="invite-preview.html" style="display:block;"><span class="tag opened">Opened</span><h3>Riya</h3><p>Sunshine · 30 Aug, 9:00 PM</p></a>
+      <a class="note-tile" href="invite-preview.html" style="display:block;"><span class="tag sent">Sent</span><h3>Meera</h3><p>Cozy · 2 Sept, 8:00 PM</p></a>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

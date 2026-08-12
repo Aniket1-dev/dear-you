@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — Templates</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/templates.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+<div class="ambient"><div class="blob b1"></div><div class="blob b2"></div></div>
+<nav class="app-nav">
+  <div class="brand"><svg viewBox="0 0 100 92" style="width:18px;height:18px;stroke:var(--pink);stroke-width:8;fill:none;"><use href="#d-heart"/></svg>Smitten</div>
+  <div class="links">
+    <a href="dashboard.html">My Notes</a>
+    <a href="invitations.html">All Notes</a>
+    <a class="current" href="#">Templates</a>
+    <a href="studio.html">Studio</a>
+    <a href="profile.html">Profile</a>
+  </div>
+  <div class="avatar"></div>
+</nav>
+<div class="wrap">
+  <div class="page-head">
+    <div class="eyebrow">the collection</div>
+    <h1>Pick a starting point.</h1>
+    <p>Every template is fully yours to rearrange — add, remove, or reorder anything once you're inside the Studio.</p>
+  </div>
+  <div class="tpl-grid">
+    <a href="template-detail.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--pink-soft),var(--mint-soft));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--pink);stroke-width:5;fill:var(--card);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Puppy Love</h3><p>Playful and warm — big rounded type, soft pink washes, a little confetti of hearts.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+    <a href="studio.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--yellow-soft),var(--peach));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--ink);stroke-width:5;fill:var(--yellow);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Sunshine</h3><p>Bright and golden — for daytime plans, picnics and lazy Sunday brunches.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+    <a href="studio.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--lavender-soft),var(--pink-soft));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--lavender);stroke-width:5;fill:var(--card);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Cozy</h3><p>Soft lavender and hand-written notes — quiet evenings, low light, close conversation.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+    <a href="studio.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--mint-soft),var(--yellow-soft));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--mint);stroke-width:5;fill:var(--card);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Confetti</h3><p>Celebratory and loud — birthdays, anniversaries, any date worth throwing glitter at.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+    <a href="studio.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--lavender-soft),var(--mint-soft));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--ink);stroke-width:5;fill:var(--lavender-soft);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Rainy Day</h3><p>Slow and soft — indoor plans, movie nights, umbrella walks.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+    <a href="studio.html" class="tpl-card">
+      <div class="tpl-thumb" style="background:linear-gradient(150deg,var(--pink-soft),var(--lavender-soft));">
+        <svg viewBox="0 0 100 92" style="stroke:var(--pink);stroke-width:5;fill:var(--lavender-soft);"><use href="#d-heart"/></svg>
+      </div>
+      <div class="tpl-body"><h3>Midnight Snack</h3><p>A little mysterious, a little sweet — late dinners and last-minute plans.</p><span class="pill-btn paper sticker-shadow-sm">Use this template</span></div>
+    </a>
+  </div>
+  <div style="padding-bottom:80px;">
+    <a href="studio.html" class="blank-card" style="max-width:340px;">
+      <div class="plus">+</div>
+      <h3>Start from blank</h3>
+      <p>Just you and an empty page.</p>
+    </a>
+  </div>
+</div>
+</body>
+</html>

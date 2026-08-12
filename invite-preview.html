@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smitten — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/invite-preview.css">
+<script src="assets/js/supabase-config.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/auth.js"></script>
+</head>
+<body>
+<script>AUTH.requireAuth();</script>
+<svg style="position:absolute;width:0;height:0;"><defs>
+  <symbol id="d-heart" viewBox="0 0 100 92"><path d="M50 88 C15 62 4 40 12 24 C19 10 40 8 50 24 C60 8 81 10 88 24 C96 40 85 62 50 88 Z"/></symbol>
+</defs></svg>
+<div class="banner">
+  <span>👀 Previewing as Ananya would see it — nothing here is saved or sent.</span>
+  <div style="display:flex;gap:10px;">
+    <a href="studio.html" class="pill-btn">← Back to Studio</a>
+    <button class="pill-btn pink" onclick="alert('Published! (demo)')">Looks good, publish</button>
+  </div>
+</div>
+<div class="stage">
+  <div class="phone">
+    <div class="screen">
+      <svg viewBox="0 0 100 92" style="width:44px;height:44px;stroke:var(--pink);stroke-width:5;fill:none;margin-bottom:22px;"><use href="#d-heart"/></svg>
+      <div class="eyebrow">24 · 08 · 26</div>
+      <h1>A private note,<br>just for you.</h1>
+      <p class="for">for Ananya 💌</p>
+    </div>
+  </div>
+</div>
+</body>
+</html>
