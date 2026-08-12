@@ -67,6 +67,7 @@ smitten/
 │   │   ├── auth-shared.css     Google button / form error+note styles
 │   │   └── <page>.css          Page-specific styles (one per app page)
 │   └── js/
+│       ├── vendor/supabase.js  Local copy of the supabase-js library (no CDN dependency)
 │       ├── supabase-config.js  Your Supabase URL + anon key (edit this)
 │       ├── supabase-client.js  Creates the shared `window.sb` client
 │       ├── auth.js             Signup/login/Google OAuth/logout + page guards
@@ -142,6 +143,10 @@ then deploy.
 
 #### How auth is wired up
 
+- `assets/js/vendor/supabase.js` — the supabase-js library itself, vendored
+  locally instead of pulled from a CDN, so it never breaks due to ad
+  blockers, corporate firewalls, or a flaky third-party request. No build
+  step needed — it's plain JS, already committed.
 - `assets/js/supabase-config.js` — your project URL + anon key (edit this).
 - `assets/js/supabase-client.js` — creates the shared `window.sb` client.
 - `assets/js/auth.js` — sign up, log in, Google OAuth, sign out, and the page
