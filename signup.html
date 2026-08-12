@@ -83,11 +83,10 @@ document.getElementById("signup-form").addEventListener("submit", async (e) => {
       await AUTH.ensureUserRow(data.user);
       window.location.href = "onboarding.html";
     } else {
-      // Email confirmation is required before a session is issued.
-      showNote("Almost there — we sent a confirmation link to " + email + ". Open it, then come back and log in.");
-      submitBtn.textContent = "Create account →";
-      submitBtn.disabled = false;
-      document.getElementById("signup-form").reset();
+      // Email confirmation is required before a session is issued — send
+      // them to the code-entry screen (they can also just click the link
+      // in the same email; it lands on auth-callback.html).
+      window.location.href = "verify-email.html?email=" + encodeURIComponent(email);
     }
   } catch (err) {
     showError(err.message || "Couldn't create your account.");

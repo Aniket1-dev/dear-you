@@ -66,6 +66,48 @@ const AUTH = (() => {
     if (error) throw error;
   }
 
+  // ---- Email OTP (6-digit code) verification -----------------------------
+  // These pair with the "Confirm signup" / "Reset password" email templates
+  // in the Supabase dashboard, which must include {{ .Token }} for a code to
+  // actually be emailed (see README → "Email OTP verification"). Without
+  // that template edit, Supabase only sends a link and these will have
+  // nothing to verify against.
+
+  // Verifies the 6-digit code sent on signup. On success supabase-js stores
+  // the new session automatically, same as clicking the email link would.
+  async function verifySignupOtp(email, token) {
+    const { data, error } = await client().auth.verifyOtp({
+      email,
+      token,
+      type: "signup",
+    });
+    if (error) throw error;
+    return data; // { user, session }
+  }
+
+  // Verifies the 6-digit code sent for a password-reset request. On success
+  // a recovery session is set, so updatePassword() can be called right after.
+  async function verifyRecoveryOtp(email, token) {
+    const { data, error } = await client().auth.verifyOtp({
+      email,
+      token,
+      type: "recovery",
+    });
+    if (error) throw error;
+    return data; // { user, session }
+  }
+
+  // Re-sends the signup confirmation email (link + code) for someone who
+  // never got it or let the code expire.
+  async function resendSignupEmail(email) {
+    const { error } = await client().auth.resend({
+      type: "signup",
+      email,
+      options: { emailRedirectTo: callbackUrl() },
+    });
+    if (error) throw error;
+  }
+
   async function updatePassword(newPassword) {
     const { error } = await client().auth.updateUser({ password: newPassword });
     if (error) throw error;
@@ -153,6 +195,9 @@ const AUTH = (() => {
     signInWithEmail,
     signInWithGoogle,
     sendPasswordReset,
+    verifySignupOtp,
+    verifyRecoveryOtp,
+    resendSignupEmail,
     updatePassword,
     signOut,
     ensureUserRow,

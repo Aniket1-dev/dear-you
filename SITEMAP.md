@@ -9,9 +9,10 @@ All links below are relative — click through starting from `index.html`.
 |---|---|---|
 | `/` | `index.html` | Landing |
 | `/login` | `login.html` | Sign in → redirects to `dashboard.html` |
-| `/signup` | `signup.html` | Create account → `onboarding.html` |
-| `/forgot-password` | `forgot-password.html` | Request a password reset email |
-| `/reset-password` | `reset-password.html` | Set a new password from the email link → `dashboard.html` |
+| `/signup` | `signup.html` | Create account → `verify-email.html` (if confirmation required) or `onboarding.html` |
+| *(auth)* | `verify-email.html` | Enter the 6-digit signup code (or click the emailed link instead) → `onboarding.html` |
+| `/forgot-password` | `forgot-password.html` | Request a password reset email (link + code) |
+| `/reset-password` | `reset-password.html` | Enter the emailed code, or arrive via the emailed link, then set a new password → `dashboard.html` |
 | *(auth)* | `auth-callback.html` | Google OAuth / email-confirmation landing → `onboarding.html` or `dashboard.html` |
 | `/onboarding` | `onboarding.html` | Profile completion → `dashboard.html` |
 

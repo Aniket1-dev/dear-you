@@ -33,8 +33,9 @@ smitten/
 ├── index.html                  Landing page
 ├── login.html                  Sign in
 ├── signup.html                 Create account
-├── forgot-password.html        Request a password reset email
-├── reset-password.html         Set a new password (from the reset email link)
+├── forgot-password.html        Request a password reset email (link + 6-digit code)
+├── reset-password.html         Set a new password (via the emailed link, or the code)
+├── verify-email.html           Enter the 6-digit signup code (or use the emailed link)
 ├── auth-callback.html          Lands here after Google OAuth / email confirmation
 ├── onboarding.html             Profile completion (post-signup)
 ├── dashboard.html               "My Notes" — personal workspace
@@ -154,7 +155,13 @@ then deploy.
 - `login.html` / `signup.html` — real forms wired to `supabase-js`, plus a
   "Continue with Google" button.
 - `forgot-password.html` / `reset-password.html` — request a reset email,
-  then set a new password once the link brings the user back with a session.
+  then set a new password once the link brings the user back with a session
+  (or, if the link hasn't been clicked, `reset-password.html` falls back to
+  a 6-digit code field — see "Email OTP verification" below).
+- `verify-email.html` — where `signup.html` sends people when email
+  confirmation is required; lets them paste the 6-digit code from the
+  confirmation email instead of hunting for the link (see "Email OTP
+  verification" below).
 - `auth-callback.html` — where Google (and confirmed email signups) send the
   user back after consent; it waits for the session, then routes to
   `onboarding.html` (new user) or `dashboard.html` (returning user).
@@ -178,6 +185,59 @@ then deploy.
   ```sql
   insert into public.admin_users (user_id, role) values ('<their-auth-uuid>', 'super_admin');
   ```
+
+### Email OTP verification
+
+Signup email confirmation and password-reset now support entering a **6-digit
+code** (in addition to clicking the link in the email) — `verify-email.html`
+and `reset-password.html` both have a code-entry step, backed by
+`AUTH.verifySignupOtp()` / `AUTH.verifyRecoveryOtp()` / `AUTH.resendSignupEmail()`
+in `assets/js/auth.js`.
+
+**This only works once you edit two email templates in Supabase** — by
+default Supabase's templates contain just `{{ .ConfirmationURL }}` (a link),
+not the numeric code. Without this step the emails will have a link but no
+code, and the code-entry screens will have nothing valid to check against.
+
+1. Supabase dashboard → **Authentication → Emails → Templates**.
+2. **Confirm signup** template → add `{{ .Token }}` somewhere in the body,
+   e.g.:
+   ```html
+   <p>Your verification code is: <strong>{{ .Token }}</strong></p>
+   <p>Or click this link: <a href="{{ .ConfirmationURL }}">Confirm your email</a></p>
+   ```
+3. **Reset Password** template → same thing:
+   ```html
+   <p>Your verification code is: <strong>{{ .Token }}</strong></p>
+   <p>Or click this link: <a href="{{ .ConfirmationURL }}">Reset your password</a></p>
+   ```
+4. Save both. (Optional) **Authentication → Emails → Rate Limits / Auth
+   settings** — the code is valid for the same expiry window as the link
+   (default 1 hour); shorten it there if you want a tighter window.
+5. Make sure **Authentication → Sign In / Providers → Email** has "Confirm
+   email" turned **on** (it's what makes `signUp()` return `session: null`
+   and require verification in the first place — if it's off, users are
+   signed in immediately and `verify-email.html` is never reached).
+
+How the flow behaves once this is set up:
+
+- **Signup**: `signup.html` → `AUTH.signUpWithEmail()` → if no session comes
+  back, redirect to `verify-email.html?email=…`. The person can either paste
+  the 6-digit code there (`AUTH.verifySignupOtp`, `type: "signup"`) or click
+  the link in the same email, which lands on `auth-callback.html` instead —
+  both produce a session and route to `onboarding.html`.
+- **Password reset**: `forgot-password.html` → `AUTH.sendPasswordReset()` →
+  redirect to `reset-password.html?email=…`. That page polls for a session
+  (link click) for ~3 seconds; if none shows up it falls back to a code-entry
+  form (`AUTH.verifyRecoveryOtp`, `type: "recovery"`) before showing the
+  new-password fields. Clicking the link at any point still works too.
+- Both code screens have a 30-second-cooldown **Resend** button
+  (`AUTH.resendSignupEmail` for signup, `AUTH.sendPasswordReset` again for
+  recovery).
+- `public.users.email_verified` updates automatically either way — the
+  `handle_auth_user_confirmed` trigger in `schema.sql` fires off
+  `auth.users.email_confirmed_at`, which `verifyOtp()` sets exactly like
+  clicking the link does.
 
 ### Google sign-in
 
