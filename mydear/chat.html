@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Mydear — Chat</title>
+<link rel="stylesheet" href="assets/css/app.css"><link rel="stylesheet" href="assets/css/dating.css">
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.13.1/firebase-firestore-compat.js"></script>
+<script src="assets/js/firebase-config.js"></script><script src="assets/js/firebase-client.js"></script><script src="assets/js/chat-realtime.js"></script>
+</head>
+<body>
+<main class="wrap narrow" style="padding-top:28px">
+<a href="realtime-chat.html">← Messages</a>
+<h1 id="head-name">Chat</h1><div id="presence-status">Connecting…</div><div id="typing-indicator"></div>
+<div id="chat-body" class="card" style="min-height:360px;margin-top:18px"></div>
+<form id="compose-form" style="display:flex;gap:8px;margin-top:12px"><input id="compose-input" placeholder="Type a message…" maxlength="1000" style="flex:1"><button type="submit">➤</button></form>
+</main>
+<script>
+// This shell is intentionally dependency-light. Wire the full match renderer from the expanded archive after copying the shared app modules.
+const form=document.getElementById('compose-form');
+form.addEventListener('submit',e=>{e.preventDefault();const v=document.getElementById('compose-input').value.trim();if(!v)return;document.getElementById('chat-body').insertAdjacentHTML('beforeend','<div>'+v.replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]))+'</div>');document.getElementById('compose-input').value='';});
+</script>
+</body></html>
